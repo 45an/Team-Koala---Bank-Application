@@ -4,19 +4,16 @@
     {
         static void Main(string[] args)
         {
-            List<BankUser> users = PostgresqlConnection.LoadBankUsers();
-            Console.WriteLine("users length: {0}", users.Count);
 
-            foreach (BankUser user in users)
-            {
-                Console.WriteLine(user.firstName);
-            }
+            LoggingSystem();
+
         }
-        static int menuIndex = 0;
-        static void MenuSystem()
+
+        public static int menuIndex = 0;
+        public static void MenuSystem ()
         {
             bool runMenu = true;
-            string menuText = " Welcome to Koala Credit\n Please select an option";
+            string menuText = $"Welcome to Koala Bank \nPlease select an option";
 
             List<string> menuItems = new()
             {
@@ -30,7 +27,7 @@
 
             while (runMenu)
             {
-                string selectedMenuItems = (menuText);
+                string selectedMenuItems = MenuList(menuItems, menuText);
                 switch (selectedMenuItems)
                 {
                     case "Balance":
@@ -65,5 +62,122 @@
                 }
             }
         }
+        public static void LoggingSystem()
+        {
+
+            int maxAttempt = 3;
+
+            string first_name, last_name, pin_code;
+
+            while (maxAttempt > 0)
+            {
+                // Be användaren att ange användarnamn och personlig kod
+                Console.WriteLine("---- Welcome to Koala Bank ----");
+                Console.Write("Please enter your firstname: ");
+                first_name = Console.ReadLine();
+
+                Console.Write("Please enter your lastname: ");
+                last_name = Console.ReadLine();
+
+                Console.Write("Please enter your Pin code: ");
+                pin_code = Console.ReadLine();
+
+                try
+                {
+                    int pin = int.Parse(pin_code);
+                    List<BankUser> checkUsers = PostgresqlConnection.CheckLogin(first_name, last_name, pin_code);
+
+                    if (checkUsers.Count < 1)
+                    {
+                        maxAttempt--;
+                        Console.WriteLine("Failed loggin attempt. You have {0} chances left, Please try again", maxAttempt);
+                        Console.WriteLine();
+                        
+                        if (maxAttempt == 0)
+                        {
+                            Console.WriteLine("You have exceeded the maximum number of login attempts. Your account is logout form the system.");
+                            Console.WriteLine();
+                            return;
+                            Environment.Exit(0);
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n Log in Sucess");
+                        Console.WriteLine();
+                        MenuSystem();
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Pin code should be a number.\nPlease try again.");
+                }
+                
+            }
+
+
+        }
+
+        public static string MenuList (List<string> menuItem, string menuMsg)
+        {
+           
+
+            Console.Clear();
+            Console.WriteLine("");
+
+            
+            Console.WriteLine(menuMsg);
+            Console.WriteLine("");
+
+            for (int i = 0; i < menuItem.Count; i++)
+            {
+                if (i == menuIndex)
+                {
+                    Console.WriteLine($"[{menuItem[i]}]");
+                }
+                else
+                {
+                    Console.WriteLine($"{menuItem[i]} ");
+                }
+            }
+
+           
+            ConsoleKeyInfo ckey = Console.ReadKey();
+
+            
+            if (ckey.Key == ConsoleKey.DownArrow)
+            {
+                if (menuIndex == menuItem.Count - 1) { }
+                else { menuIndex++; }
+            }
+            
+            else if (ckey.Key == ConsoleKey.UpArrow)
+            {
+                if (menuIndex <= 0) { }
+                else { menuIndex--; }
+            }
+            //Left arrow key check
+            else if (ckey.Key == ConsoleKey.LeftArrow)
+            {
+                
+            }
+            
+            else if (ckey.Key == ConsoleKey.RightArrow)
+            {
+                return menuItem[menuIndex];
+            }
+            
+            else if (ckey.Key == ConsoleKey.Enter)
+            {
+                return menuItem[menuIndex];
+            }
+            else
+            {
+                return "";
+            }
+
+            return "";
+        }
     }
-}
+} 

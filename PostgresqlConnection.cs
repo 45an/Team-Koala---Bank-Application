@@ -35,20 +35,19 @@ namespace TeamKoalaBankApp
             // läser ut alla Users
             // Returnerar en lista av Users
         }
-        public static List<BankUser> CheckLogin(string firstName, string pinCode)
+        public static List<BankUser> CheckLogin(string first_name,string last_name, string pin_code)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
             {
-
-                var output = cnn.Query<BankUser>($"SELECT bank_user.*, bank_role.is_admin, bank_role.is_client FROM bank_user, bank_role WHERE first_name = '{firstName}' AND pin_code = '{pinCode}' AND bank_user.role_id = bank_role.id", new DynamicParameters());
-                //Console.WriteLine(output);
+                var output = cnn.Query<BankUser>($"SELECT * FROM bank_user WHERE first_name = '{first_name}' AND last_name = '{last_name}' AND pin_code = '{pin_code}'", new DynamicParameters());
+               // Console.WriteLine(output);
                 return output.ToList();
             }
             // Kopplar upp mot DB:n
             // läser ut alla Users
             // Returnerar en lista av Users
         }
-        /*
+       /*
         public static List<BankAccountModel> GetUserAccounts(int user_id)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))

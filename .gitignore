@@ -1,0 +1,6 @@
+# Ignore any files in /bin and /obj Folders
+**/bin/*
+**/obj/*
+.vs/
+Team-Koala---Bank-Application/.vs # Change this to the name of your git repo for Visual Studio git connection to work
+app.config

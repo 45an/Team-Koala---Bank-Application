@@ -3,19 +3,19 @@ namespace TeamKoalaBankApp
 {
 	public class BankUser
 	{
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string firstName { get; set; }
+        public string first_name { get; set; }
 
-        public string lastName { get; set; }
+        public string last_name { get; set; }
 
-        public string pinCode { get; set; }
+        public string pin_code { get; set; }
 
         public string fullName
         {
             get
             {
-                return $"{firstName} {lastName}";
+                return $"{first_name} {last_name}";
             }
         }
     }

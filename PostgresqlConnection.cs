@@ -22,7 +22,7 @@ namespace TeamKoalaBankApp
             // läser ut alla Users
             // Returnerar en lista av Users
         }
-        public static List<BankUser> LoadBankUsers()
+        public static List<BankUser> LoadBankUsers(int user_id)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
             {
@@ -47,12 +47,12 @@ namespace TeamKoalaBankApp
             // läser ut alla Users
             // Returnerar en lista av Users
         }
-       /*
-        public static List<BankAccountModel> GetUserAccounts(int user_id)
+       
+        public static List<BankAccounts> GetUserAccounts(int user_id)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<BankAccountModel>($"SELECT bank_account.*, bank_currency.name AS currency_name, bank_currency.exchange_rate AS currency_exchange_rate FROM bank_account, bank_currency WHERE user_id = '{user_id}' AND bank_account.currency_id = bank_currency.id", new DynamicParameters());
+                var output = cnn.Query<BankAccounts>($"SELECT bank_account.*, bank_currency.name AS currency_name, bank_currency.exchange_rate AS currency_exchange_rate FROM bank_account, bank_currency WHERE user_id = '{user_id}' AND bank_account.currency_id = bank_currency.id", new DynamicParameters());
                 //Console.WriteLine(output);
                 return output.ToList();
             }
@@ -62,7 +62,7 @@ namespace TeamKoalaBankApp
             // vilken typ av sql-query bör vi använda, INSERT, UPDATE eller SELECT?
             // ...?
         }
-        */
+        
         public static void SaveBankUser(BankUser user)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
@@ -77,6 +77,13 @@ namespace TeamKoalaBankApp
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
-
+        public static List<BankAccounts> ShowBankAccounts(int user_id)
+        {
+            using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<BankAccounts>($"SELECT * FROM bank_account WHERE user_id = '{user_id}'", new DynamicParameters());
+                return output.ToList();
+            }
+        }
     }
 }

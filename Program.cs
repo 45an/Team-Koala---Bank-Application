@@ -1,16 +1,23 @@
-﻿namespace TeamKoalaBankApp
+﻿using System.Collections.Generic;
+using System.Configuration;
+
+namespace TeamKoalaBankApp
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+         static void Main(string[] args)
+         {
+            StartProgram();
 
+         }
+         public static void StartProgram()
+        {
             LoggingSystem();
 
         }
 
         public static int menuIndex = 0;
-        public static void MenuSystem ()
+        public static void MenuSystem (List<BankUser> logInUsers)
         {
             bool runMenu = true;
             string menuText = $"Welcome to Koala Bank \nPlease select an option";
@@ -31,12 +38,24 @@
                 switch (selectedMenuItems)
                 {
                     case "Balance":
-                        Console.WriteLine(" Balance Would start here");
-                        Console.WriteLine(" Press any key to continue");
+                        // Console.WriteLine(" Balance Would start here");
+                        Console.WriteLine($"\n view your aaccount and balance");
+
+                        List<BankAccounts> checksAccounts = PostgresqlConnection.ShowBankAccounts(logInUsers[0].id);
+
+                        for (int i = 0; i < checksAccounts.Count; i++)
+                        {
+                            Console.WriteLine($"{i + 1}: {checksAccounts[i].name} : Balance {checksAccounts[i].balance:C}");
+
+                        }
+
+                        //Console.WriteLine(" Press any key to continue");
                         Console.ReadKey();
+                        
                         break;
                     case "Transfer":
                         Console.WriteLine(" Transfer would start here");
+                        
                         Console.WriteLine(" Press any key to continue");
                         Console.ReadKey();
                         break;
@@ -62,62 +81,7 @@
                 }
             }
         }
-        public static void LoggingSystem()
-        {
-
-            int maxAttempt = 3;
-
-            string first_name, last_name, pin_code;
-
-            while (maxAttempt > 0)
-            {
-                // Be användaren att ange användarnamn och personlig kod
-                Console.WriteLine("---- Welcome to Koala Bank ----");
-                Console.Write("Please enter your firstname: ");
-                first_name = Console.ReadLine();
-
-                Console.Write("Please enter your lastname: ");
-                last_name = Console.ReadLine();
-
-                Console.Write("Please enter your Pin code: ");
-                pin_code = Console.ReadLine();
-
-                try
-                {
-                    int pin = int.Parse(pin_code);
-                    List<BankUser> checkUsers = PostgresqlConnection.CheckLogin(first_name, last_name, pin_code);
-
-                    if (checkUsers.Count < 1)
-                    {
-                        maxAttempt--;
-                        Console.WriteLine("Failed loggin attempt. You have {0} chances left, Please try again", maxAttempt);
-                        Console.WriteLine();
-                        
-                        if (maxAttempt == 0)
-                        {
-                            Console.WriteLine("You have exceeded the maximum number of login attempts. Your account is logout form the system.");
-                            Console.WriteLine();
-                            return;
-                            Environment.Exit(0);
-
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n Log in Sucess");
-                        Console.WriteLine();
-                        MenuSystem();
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid input. Pin code should be a number.\nPlease try again.");
-                }
-                
-            }
-
-
-        }
+        
 
         public static string MenuList (List<string> menuItem, string menuMsg)
         {
@@ -178,6 +142,65 @@
             }
 
             return "";
+        }
+      
+        public static void LoggingSystem()
+        {
+
+            int maxAttempt = 3;
+
+            string first_name, last_name, pin_code;
+
+            while (maxAttempt > 0)
+            {
+                // Be användaren att ange användarnamn och personlig kod
+                Console.WriteLine("---- Welcome to Koala Bank ----");
+                Console.Write("Please enter your firstname: ");
+                first_name = Console.ReadLine();
+
+                Console.Write("Please enter your lastname: ");
+                last_name = Console.ReadLine();
+
+                Console.Write("Please enter your Pin code: ");
+                pin_code = Console.ReadLine();
+
+                try
+                {
+                    int pin = int.Parse(pin_code);
+                    List<BankUser> checkUsers = PostgresqlConnection.CheckLogin(first_name, last_name, pin_code);
+
+                    if (checkUsers.Count < 1)
+                    {
+                        maxAttempt--;
+                        Console.WriteLine("Failed loggin attempt. You have {0} chances left, Please try again", maxAttempt);
+                        Console.WriteLine();
+
+                        if (maxAttempt == 0)
+                        {
+                            Console.WriteLine("You have exceeded the maximum number of login attempts. Your account is logout form the system.");
+                            Console.WriteLine();
+                            return;
+                            Environment.Exit(0);
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n Log in Sucess");
+                        Console.WriteLine();
+                        MenuSystem(checkUsers);
+                       
+
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Pin code should be a number.\nPlease try again.");
+                }
+
+            }
+
+
         }
     }
 } 

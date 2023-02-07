@@ -5,19 +5,19 @@ namespace TeamKoalaBankApp
 {
     class Program
     {
-         static void Main(string[] args)
-         {
+        static void Main(string[] args)
+        {
             StartProgram();
 
-         }
-         public static void StartProgram()
+        }
+        public static void StartProgram()
         {
             LoggingSystem();
 
         }
 
         public static int menuIndex = 0;
-        public static void MenuSystem (List<BankUser> logInUsers)
+        public static void MenuSystem(List<BankUser> logInUsers)
         {
             bool runMenu = true;
             string menuText = $"Welcome to Koala Bank \nPlease select an option";
@@ -39,7 +39,7 @@ namespace TeamKoalaBankApp
                 {
                     case "Balance":
                         // Console.WriteLine(" Balance Would start here");
-                        Console.WriteLine($"\n view your aaccount and balance");
+                        Console.WriteLine($"\n view your account and balance");
 
                         List<BankAccounts> checksAccounts = PostgresqlConnection.ShowBankAccounts(logInUsers[0].id);
 
@@ -51,17 +51,17 @@ namespace TeamKoalaBankApp
 
                         //Console.WriteLine(" Press any key to continue");
                         Console.ReadKey();
-                        
+
                         break;
                     case "Transfer":
                         Console.WriteLine(" Transfer would start here");
-                        
+
                         Console.WriteLine(" Press any key to continue");
+                     
                         Console.ReadKey();
                         break;
                     case "Withdraw":
-                        Console.WriteLine(" Withdraw would start here");
-                        Console.WriteLine(" Press any key to continue");
+                        WithdrawSystem(logInUsers[0].id);
                         Console.ReadKey();
                         break;
                     case "Loan":
@@ -81,16 +81,16 @@ namespace TeamKoalaBankApp
                 }
             }
         }
-        
 
-        public static string MenuList (List<string> menuItem, string menuMsg)
+
+        public static string MenuList(List<string> menuItem, string menuMsg)
         {
-           
+
 
             Console.Clear();
             Console.WriteLine("");
 
-            
+
             Console.WriteLine(menuMsg);
             Console.WriteLine("");
 
@@ -106,16 +106,16 @@ namespace TeamKoalaBankApp
                 }
             }
 
-           
+
             ConsoleKeyInfo ckey = Console.ReadKey();
 
-            
+
             if (ckey.Key == ConsoleKey.DownArrow)
             {
                 if (menuIndex == menuItem.Count - 1) { }
                 else { menuIndex++; }
             }
-            
+
             else if (ckey.Key == ConsoleKey.UpArrow)
             {
                 if (menuIndex <= 0) { }
@@ -124,14 +124,14 @@ namespace TeamKoalaBankApp
             //Left arrow key check
             else if (ckey.Key == ConsoleKey.LeftArrow)
             {
-                
+
             }
-            
+
             else if (ckey.Key == ConsoleKey.RightArrow)
             {
                 return menuItem[menuIndex];
             }
-            
+
             else if (ckey.Key == ConsoleKey.Enter)
             {
                 return menuItem[menuIndex];
@@ -143,7 +143,7 @@ namespace TeamKoalaBankApp
 
             return "";
         }
-      
+
         public static void LoggingSystem()
         {
 
@@ -189,7 +189,7 @@ namespace TeamKoalaBankApp
                         Console.WriteLine("\n Log in Sucess");
                         Console.WriteLine();
                         MenuSystem(checkUsers);
-                       
+
 
                     }
                 }
@@ -202,5 +202,47 @@ namespace TeamKoalaBankApp
 
 
         }
+
+        public static void WithdrawSystem(int user_id)
+        {
+            
+            decimal amount;
+            List<BankAccounts> checkAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
+
+            Console.Clear();
+            Console.WriteLine("Which account do you wish to withdraw money from?\n");
+
+            for (int i = 0; i < checkAccounts.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance}");
+            }
+
+            Console.Write("\nType a number please ===> ");
+            string? accountChoice = Console.ReadLine();
+
+            int.TryParse(accountChoice, out int accountID);
+            accountID -= 1;
+
+            Console.WriteLine("\nHow much money to withdraw from you bank account??\n");
+            Console.Write("Type here: ");
+            string? transfer = Console.ReadLine();
+            decimal.TryParse(transfer, out amount);
+
+            if (amount <= 0)
+            {
+                Console.WriteLine("Amount to witdraw cannot be a negative value."); 
+            }
+            else if (checkAccounts[accountID].balance < amount)
+            {
+                Console.WriteLine("\n\t Not allowed. You don't have enough money");
+            }
+            else
+            {
+                amount = checkAccounts[accountID].balance -= amount;
+                Console.WriteLine($"\nAccount: {checkAccounts[accountID].name} New balance is : {amount}");
+                PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
+            }
+        }
+
     }
-} 
+}

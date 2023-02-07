@@ -4,6 +4,7 @@ using System.Data;
 using System.Configuration;
 using Dapper;
 using Npgsql;
+using System.Globalization;
 
 namespace TeamKoalaBankApp
 {
@@ -72,11 +73,21 @@ namespace TeamKoalaBankApp
             }
         }
 
+        public static void UpdateAccount(decimal amount, int id, int user_id)
+        {
+            using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"UPDATE bank_account SET balance = '{amount.ToString(CultureInfo.CreateSpecificCulture("en-GB"))}' WHERE id = '{id}' AND user_id = '{user_id}'", new DynamicParameters());
+            }
+        }
+
+
 
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
+
         public static List<BankAccounts> ShowBankAccounts(int user_id)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))

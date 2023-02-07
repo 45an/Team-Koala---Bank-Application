@@ -63,16 +63,6 @@ namespace TeamKoalaBankApp
                         WithdrawSystem(logInUsers[0].id);
                         Console.ReadKey();
                         break;
-                    case "Loan":
-                        Console.WriteLine(" Loan would start here");
-                        Console.WriteLine(" Press any key to continue");
-                        Console.ReadKey();
-                        break;
-                    case "Account":
-                        Console.WriteLine(" Account would start here");
-                        Console.WriteLine(" Press any key to continue");
-                        Console.ReadKey();
-                        break;
                     case "Logout":
                         menuIndex = 0;
                         runMenu = false;

@@ -24,11 +24,9 @@ namespace TeamKoalaBankApp
 
             List<string> menuItems = new()
             {
-                "Balance",
+                "View Account & Balance",
                 "Transfer",
                 "Withdraw",
-                "Loan",
-                "Account",
                 "Logout"
             };
 
@@ -37,9 +35,10 @@ namespace TeamKoalaBankApp
                 string selectedMenuItems = MenuList(menuItems, menuText);
                 switch (selectedMenuItems)
                 {
-                    case "Balance":
+                    case "View Account & Balance":
                         // Console.WriteLine(" Balance Would start here");
-                        Console.WriteLine($"\n view your account and balance");
+                        Console.WriteLine($"\n View your account and balance");
+                        Console.WriteLine();
 
                         List<BankAccounts> checksAccounts = PostgresqlConnection.ShowBankAccounts(logInUsers[0].id);
 
@@ -214,7 +213,7 @@ namespace TeamKoalaBankApp
 
             for (int i = 0; i < checkAccounts.Count; i++)
             {
-                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance}");
+                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
             }
 
             Console.Write("\nType a number please ===> ");

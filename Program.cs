@@ -206,7 +206,7 @@ namespace TeamKoalaBankApp
                 Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
             }
 
-            Console.Write("\nType a number please ===> ");
+            Console.Write("\nPlease select an account ===> ");
             string? accountChoice = Console.ReadLine();
 
             int.TryParse(accountChoice, out int accountID);

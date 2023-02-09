@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using Dapper;
+using Npgsql;
+using System.Data;
 
 namespace TeamKoalaBankApp
 {
@@ -72,7 +75,7 @@ namespace TeamKoalaBankApp
         }
 
 
-        public static string MenuList(List<string> menuItem, string menuMsg)
+        public static string  MenuList(List<string?> menuItem, string? menuMsg)
         {
 
 
@@ -232,6 +235,160 @@ namespace TeamKoalaBankApp
                 PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
             }
         }
+
+        public static void Transfer(int user_Id)
+        {
+            menuIndex = 0;
+
+            //Declatation
+            List<BankAccounts> checkaccounts = PostgresqlConnection.GetUserAccounts(user_Id);
+            List<string> menuItems = new List<string>();
+            bool runMenu = true;
+            bool runMenu2 = true;
+            string? senderAccountName, reciverAccountName, input;
+            int senderAccountId, reciverAccountId, senderAccountPos, reciverAccountPos;
+            decimal senderBalance, reciverBalance;
+            string menuMsg = " Please select an account to transfer from\n ";
+            string menuMsg2 = "\n Please select a reciver account";
+
+            //Create menu Items
+            for (int i = 0; i < checkaccounts.Count; i++)
+            {
+                menuItems.Add(checkaccounts[i].name);
+            }
+            menuItems.Add("Exit");
+
+            //Menu Start
+            while (runMenu)
+            {
+                int selectedItems = Int32.Parse( MenuList(menuItems, menuMsg));
+
+                //Exit casew
+                if (selectedItems == menuItems.Count - 1)
+                {
+                    runMenu = false;
+                }
+                //select account case
+                else if (selectedItems <= menuItems.Count - 1)
+                {
+                    Console.Clear();
+                    senderAccountId = checkaccounts[selectedItems].id;
+                    senderAccountName = checkaccounts[selectedItems].name;
+                    senderBalance = checkaccounts[selectedItems].balance;
+                    senderAccountPos = selectedItems;
+                    Console.WriteLine($"\n {checkaccounts[selectedItems].name} account was selected");
+                    menuMsg2 = menuMsg2 + $"\n Sender account: {checkaccounts[selectedItems].name}";
+                    Console.ReadKey();
+                    runMenu2 = true;
+                    menuIndex = 0;
+
+                    //Submenu Start
+                    while (runMenu2)
+                    {
+                        selectedItems = Int32.Parse(MenuList(menuItems, menuMsg));
+                        reciverAccountName = "";
+                        //Exit case
+                        if (selectedItems == menuItems.Count - 1)
+                        {
+                            runMenu2 = false;
+                        }
+                        else if (selectedItems <= menuItems.Count - 1)
+                        {
+
+                            Console.Clear();
+                            reciverAccountId = checkaccounts[selectedItems].id;
+                            reciverAccountName = checkaccounts[selectedItems].name;
+                            reciverAccountPos = selectedItems;
+
+                            //Same account was selected
+                            if (senderAccountName == reciverAccountName)
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"\n Can not select the same account");
+                                Console.WriteLine($" Press any key to continue");
+                                Console.ReadKey();
+                            }
+                            //Select reciver account
+                            else
+                            {
+                                reciverBalance = checkaccounts[selectedItems].balance;
+
+                                Console.WriteLine($"\n {checkaccounts[selectedItems].name} account was selected");
+                                Console.ReadKey();
+                                Console.Clear();
+                                Console.WriteLine($"\n Sender account: {senderAccountName}: {senderBalance}");
+                                Console.WriteLine($" Reciver account: {reciverAccountName}: {reciverBalance}");
+                                Console.Write($"\n Enter amount you wish to transfer: ");
+                                input = Console.ReadLine();
+
+
+                                decimal.TryParse(input, out decimal transferAmount);
+                                //Transfer amount is negative
+                                if (transferAmount <= 0)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"\n Amount can not be negative");
+                                    Console.WriteLine($" Press any key to continue");
+                                    Console.ReadKey();
+                                    runMenu = false;
+                                    runMenu2 = false;
+                                }
+                                //Transfer amount larger than balance
+                                else if (transferAmount > senderBalance)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"\n Transfer amount exceeds account balance");
+                                    Console.WriteLine($" Press any key to continue");
+                                    Console.ReadKey();
+                                    runMenu = false;
+                                    runMenu2 = false;
+                                }
+                                //Transfer Start
+                                else
+                                {
+
+                                    //check currencies
+                                   if (checkaccounts[senderAccountPos].currency_id != checkaccounts[reciverAccountPos].currency_id)
+                                    {
+                                        //transaction between different currencies
+                                        transferAmount = currency_exchange(transferAmount, senderAccountPos, reciverAccountPos, checkaccounts);
+                                        PostgresqlConnection.TransferMoney(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
+                                        Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
+                                        Console.WriteLine($"\n Press any key to continue");
+                                        Console.ReadKey();
+
+                                        runMenu = false;
+                                        runMenu2 = false;
+                                    }
+                                    //transaction between same currency
+                                    else
+                                    {
+                                        //execute transaction
+                                        PostgresqlConnection.TransferMoney(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
+
+                                        Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
+                                        Console.WriteLine($"\n Press any key to continue");
+                                        Console.ReadKey();
+                                        runMenu = false;
+                                        runMenu2 = false;
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+            menuIndex = 0;
+        }
+
+
+
+
+
 
     }
 }

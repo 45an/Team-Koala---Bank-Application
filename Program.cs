@@ -36,7 +36,7 @@ namespace TeamKoalaBankApp
                 switch (selectedMenuItems)
                 {
                     case "View Account & Balance":
-                        // Console.WriteLine(" Balance Would start here");
+                        
                         Console.WriteLine($"\n View your account and balance");
                         Console.WriteLine();
 
@@ -48,15 +48,13 @@ namespace TeamKoalaBankApp
 
                         }
 
-                        //Console.WriteLine(" Press any key to continue");
+                        
                         Console.ReadKey();
 
                         break;
                     case "Transfer":
                         Console.WriteLine(" Transfer would start here");
-
                         Console.WriteLine(" Press any key to continue");
-                     
                         Console.ReadKey();
                         break;
                     case "Withdraw":
@@ -64,6 +62,23 @@ namespace TeamKoalaBankApp
                         Console.ReadKey();
                         break;
                     case "Logout":
+                        Console.WriteLine($"\nThanks for using our services, Have a Nice day :)");
+                        Console.WriteLine();
+                        Console.WriteLine("⢀⠔⠊⠉⠑⢄⠀⠀⣀⣀⠤⠤⠤⢀⣀⠀⠀⣀⠔⠋⠉⠒⡄");
+                        Console.WriteLine("⡎⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠘⡄");
+                        Console.WriteLine("⣧⢢⠀⠀⠀⠀⠀⠀⠀⠀⣀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣆⡗⠀");
+                        Console.WriteLine("⠘⡇⠀⢀⠆⠀⠀⣀⠀⢰⣿⣿⣧⠀⢀⡀⠀⠀⠘⡆⠀⠈⡏⠀");
+                        Console.WriteLine("⠀⠑⠤⡜⠀⠀⠈⠋⠀⢸⣿⣿⣿⠀⠈⠃⠀⠀⠀⠸⡤⠜⠀⠀");
+                        Console.WriteLine("⠀⠀⠀⣇⠀⠀⠀⠀⠀⠢⣉⢏⣡⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀");
+                        Console.WriteLine("⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠋⠀⠀⠀⠀⠁");
+                        Console.WriteLine("⠀⠀⠀⠀⢨⠃⠀⢀⠀⢀⠔⡆⠀⠀⠀⠀⠻⡄⠀⠀⠀⠀⠀");
+                        Console.WriteLine("⠀⠀⡎⠀⠀⠧⠬⢾⠊⠀⠀⢀⡇⠀⠀⠟⢆⠀⠀⠀⠀");
+                        Console.WriteLine("⠀⠀⠀⢀⡇⠀⠀⡞⠀⠀⢣⣀⡠⠊⠀⠀⠀⢸⠈⣆⡀⠀⠀");
+                        Console.WriteLine("⡠⠒⢸⠀⠀⠀⡇⡠⢤⣯⠅⠀⠀⠀⢀⡴⠃⠀⢸⠘⢤⠀⠒");
+                        Console.WriteLine("⠀⢰⠁⠀⢸⠀⠀⠀⣿⠁⠀⠙⡟⠒⠒⠉⠀⠀⠀⠀⠀⡇⡎⠀");
+                        Console.WriteLine("⠀⠘⣄⠀⠸⡆⠀⠀⣿⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⢀⠟⠁⠀");
+                        Console.WriteLine("⠘⠦⣀⣷⣀⡼⠽⢦⡀⠀⠀⢀⣀⣀⣀⠤⠄");
+                        Console.WriteLine();
                         menuIndex = 0;
                         runMenu = false;
                         break;
@@ -144,14 +159,18 @@ namespace TeamKoalaBankApp
             {
                 // Be användaren att ange användarnamn och personlig kod
                 Console.WriteLine("---- Welcome to Koala Bank ----");
-                Console.Write("Please enter your firstname: ");
+                Console.WriteLine();
+                Console.Write("Please enter your Firstname: ");
                 first_name = Console.ReadLine();
+                
 
-                Console.Write("Please enter your lastname: ");
+                Console.Write("Please enter your Lastname: ");
                 last_name = Console.ReadLine();
+                
 
-                Console.Write("Please enter your Pin code: ");
+                Console.Write("Please enter your Pincode: ");
                 pin_code = Console.ReadLine();
+               
 
                 try
                 {
@@ -177,6 +196,7 @@ namespace TeamKoalaBankApp
                     {
                         Console.WriteLine("\n Log in Sucess");
                         Console.WriteLine();
+                        Console.Clear();    
                         MenuSystem(checkUsers);
 
 

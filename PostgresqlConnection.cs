@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Configuration;
-using Dapper;
+﻿using Dapper;
 using Npgsql;
+using System.Configuration;
+using System.Data;
 using System.Globalization;
 
 namespace TeamKoalaBankApp
@@ -113,11 +111,11 @@ namespace TeamKoalaBankApp
                     COMMIT;
                 ", new DynamicParameters());
 
-                    
+
                 }
                 catch (Npgsql.PostgresException e)
                 {
-                    
+
                     Console.WriteLine(e.MessageText);
                     return false;
                 }
@@ -125,4 +123,5 @@ namespace TeamKoalaBankApp
 
             }
         }
-}    }
+    }
+}

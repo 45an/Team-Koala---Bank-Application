@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DBTest;
 using Npgsql;
 using System.Configuration;
 using System.Data;
@@ -21,7 +22,20 @@ namespace TeamKoalaBankApp
             // läser ut alla Users
             // Returnerar en lista av Users
         }
-        public static List<BankUser> LoadBankUsers(int user_id)
+        /*
+        public static List<BankTransaction> GetTransactionByAccountId(int account_id)
+        {
+            using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
+            {
+
+                var output = cnn.Query<BankTransaction>($"SELECT * FROM bank_transaction WHERE from_account_id = {account_id} OR to_account_id = {account_id} ORDER BY timestamp DESC", new DynamicParameters());
+                //Console.WriteLine(output);
+                return output.ToList();
+            }
+        }
+        */
+
+            public static List<BankUser> LoadBankUsers(int user_id)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
             {
@@ -91,36 +105,52 @@ namespace TeamKoalaBankApp
             }
         }
 
-
-        public static bool TransferMoney(int user_id, int from_account_id, int to_account_id, decimal amount)
+        /*
+        public static bool Transfer(int user_id, int from_account_id, int to_account_id, decimal amountFrom, decimal amountTo, int currencySenderId, int currencyReceiverId)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
             {
-                string newAmount = amount.ToString(CultureInfo.CreateSpecificCulture("en-GB"));
-                try
+                cnn.Open();
+
+                using (var transaction = cnn.BeginTransaction())
                 {
+                    try
+                    {
 
-                    var output = cnn.Query($@"
-                    BEGIN TRANSACTION;
-                    UPDATE bank_account SET balance = CASE
-                       WHEN id = {from_account_id} AND balance >= '{newAmount}' THEN balance - '{newAmount}'
-                       WHEN id = {to_account_id} THEN balance + '{newAmount}'
-                    END
-                    WHERE id IN ({from_account_id}, {to_account_id});
-                    INSERT INTO bank_transaction (name, from_account_id, to_account_id, amount) VALUES ('Överföring', {from_account_id}, {to_account_id}, '{newAmount}');
-                    COMMIT;
-                ", new DynamicParameters());
+                        var numberFormat = new NumberFormatInfo
+                        {
+                            NumberDecimalSeparator = ".",
+                            NumberGroupSeparator = ""
+                        };
 
-
+                        cnn.Execute($@"
+                        UPDATE bank_account 
+                        SET balance = balance - '{amountFrom.ToString(numberFormat)}'
+                            WHERE id = '{from_account_id}' AND user_id = '{user_id}' AND currency_id = '{currencySenderId}';
+                        UPDATE bank_account 
+                        SET balance = balance + '{amountTo.ToString(numberFormat)}'
+                        WHERE id = '{to_account_id}' AND user_id = '{user_id}' AND currency_id = '{currencyReceiverId}';
+                        INSERT INTO bank_transaction (name, user_id, from_account_id, to_account_id, amount_sender, amount_receiver, currency_id_sender, currency_id_receiver)
+                        VALUES ('Transfer', '{user_id}', '{from_account_id}', '{to_account_id}', '{amountFrom.ToString(numberFormat)}', '{amountTo.ToString(numberFormat)}', '{currencySenderId}', '{currencyReceiverId}');", new DynamicParameters());
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Npgsql.PostgresException)
+                    {
+                        //Console.WriteLine(e.Message);
+                        return false;
+                    }
+        
                 }
-                catch (Npgsql.PostgresException e)
-                {
-
-                    Console.WriteLine(e.MessageText);
-                    return false;
-                }
-                return true;
-
+          
+        }
+        }
+     */
+        public static void MakeDeposit(int account_id, decimal amount)
+        {
+            using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"UPDATE bank_account SET balance = balance + {amount.ToString(CultureInfo.CreateSpecificCulture("en-GB"))} WHERE id = '{account_id}'", new DynamicParameters());
             }
         }
     }

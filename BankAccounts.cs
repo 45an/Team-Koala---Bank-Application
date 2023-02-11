@@ -5,8 +5,9 @@ namespace TeamKoalaBankApp
 
     public class BankAccounts
     {
-       
-        
+
+
+        public int user_id { get; set; }
 
         public int id { get; set; }
 
@@ -19,8 +20,6 @@ namespace TeamKoalaBankApp
         public string currency_name { get; set; }
 
         public double currency_exchange_rate { get; set; }
-
-        public int user_id { get; set; }
 
         public int currency_id { get; set; }
 

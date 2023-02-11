@@ -29,8 +29,9 @@ namespace TeamKoalaBankApp
             List<string> menuItems = new()
             {
                 "View Account & Balance",
-                "Deposit",
                 "Withdraw",
+                "Deposit",
+                "Transfer Between Account",
                 "Logout"
             };
 
@@ -56,13 +57,16 @@ namespace TeamKoalaBankApp
                         Console.ReadKey();
 
                         break;
-                    case "Deposit":
-                        Deposit(logInUsers[0].id);
-
-                        break;
                     case "Withdraw":
                         WithdrawSystem(logInUsers[0].id);
                         Console.ReadKey();
+                        break;
+                    case "Deposit":
+                        Deposit(logInUsers[0].id);
+                        Console.ReadKey();
+                        break;
+                    case "Transfer Between Account":
+                        TransferBetweenAccounts(logInUsers[0].id);
                         break;
                     case "Logout":
                         Console.WriteLine($"\nThanks for using our services, Have a Nice day :)");
@@ -73,11 +77,11 @@ namespace TeamKoalaBankApp
                         Console.WriteLine("⠘⡇⠀⢀⠆⠀⠀⣀⠀⢰⣿⣿⣧⠀⢀⡀⠀⠀⠘⡆⠀⠈⡏⠀");
                         Console.WriteLine("⠀⠑⠤⡜⠀⠀⠈⠋⠀⢸⣿⣿⣿⠀⠈⠃⠀⠀⠀⠸⡤⠜⠀⠀");
                         Console.WriteLine("⠀⠀⠀⣇⠀⠀⠀⠀⠀⠢⣉⢏⣡⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀");
-                        Console.WriteLine("⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠋⠀⠀⠀⠀⠁");
+                        Console.WriteLine("⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠋⠀⠀⠀⠀");
                         Console.WriteLine("⠀⠀⠀⠀⢨⠃⠀⢀⠀⢀⠔⡆⠀⠀⠀⠀⠻⡄⠀⠀⠀⠀⠀");
                         Console.WriteLine("⠀⠀⡎⠀⠀⠧⠬⢾⠊⠀⠀⢀⡇⠀⠀⠟⢆⠀⠀⠀⠀");
                         Console.WriteLine("⠀⠀⠀⢀⡇⠀⠀⡞⠀⠀⢣⣀⡠⠊⠀⠀⠀⢸⠈⣆⡀⠀⠀");
-                        Console.WriteLine("⡠⠒⢸⠀⠀⠀⡇⡠⢤⣯⠅⠀⠀⠀⢀⡴⠃⠀⢸⠘⢤⠀⠒");
+                        Console.WriteLine("⡠⠒⢸⠀⠀⠀⡇⡠⢤⣯⠅⠀⠀⠀⢀⡴⠃⠀⢸⠘⢤⠀");
                         Console.WriteLine("⠀⢰⠁⠀⢸⠀⠀⠀⣿⠁⠀⠙⡟⠒⠒⠉⠀⠀⠀⠀⠀⡇⡎⠀");
                         Console.WriteLine("⠀⠘⣄⠀⠸⡆⠀⠀⣿⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⢀⠟⠁⠀");
                         Console.WriteLine("⠘⠦⣀⣷⣀⡼⠽⢦⡀⠀⠀⢀⣀⣀⣀⠤⠄");
@@ -230,6 +234,7 @@ namespace TeamKoalaBankApp
             }
 
             Console.Write("\nPlease select an account ===> ");
+            Console.WriteLine();
             string? accountChoice = Console.ReadLine();
 
             int.TryParse(accountChoice, out int accountID);
@@ -275,7 +280,7 @@ namespace TeamKoalaBankApp
             accountID -= 1;
 
             Console.WriteLine("\nHow much money would you like to deposit to your bank account?\n");
-            Console.Write("Type here: ");
+            Console.Write("Type here: ====> ")
             string? deposit = Console.ReadLine();
             decimal.TryParse(deposit, out amount);
 
@@ -290,163 +295,87 @@ namespace TeamKoalaBankApp
                 amount = checkAccounts[accountID].balance += amount;
                 Console.WriteLine($"\nAccount: {checkAccounts[accountID].name} New balance is : {amount}");
                 PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
+                Console.WriteLine("Press enter twice to return to the main menu.");
+                Console.ReadKey();
             }
         }
-       
-        /*
 
-        public static void Transfer(int user_Id)
+        static void TransferBetweenAccounts(int user_id)
         {
-            menuIndex = 0;
+            Console.WriteLine("\nWhich account do you want to transfer money from?");
 
-            //Declatation
-            List<BankAccounts> checkaccounts = PostgresqlConnection.GetUserAccounts(user_Id);
-            List<string> menuItems = new List<string>();
-            bool runMenu = true;
-            bool runMenu2 = true;
-            string? senderAccountName, reciverAccountName, input;
-            int senderAccountId, reciverAccountId, senderAccountPos, reciverAccountPos;
-            decimal senderBalance, reciverBalance;
-            string menuMsg = " Please select an account to transfer from\n ";
-            string menuMsg2 = "\n Please select a reciver account";
+            List<BankAccounts> checkAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
 
-            //Create menu Items
-            for (int i = 0; i < checkaccounts.Count; i++)
+            Console.Clear();
+            for (int i = 0; i < checkAccounts.Count; i++)
             {
-                menuItems.Add(checkaccounts[i].name);
+                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
             }
-            menuItems.Add("Exit");
 
-            //Menu Start
-            while (runMenu)
+            try
             {
-                int selectedItems = Int32.Parse( MenuList(menuItems, menuMsg));
+                Console.Write("\nEnter your choice: ===> ");
+                Console.WriteLine();
+                string accountChoice = Console.ReadLine();
 
-                //Exit casew
-                if (selectedItems == menuItems.Count - 1)
+                int.TryParse(accountChoice, out int fromAccountID);
+                fromAccountID -= 1;
+
+                BankAccounts fromAccount = checkAccounts[fromAccountID];
+
+                Console.WriteLine("\nWhich account do you want to transfer money to?");
+
+                List<BankAccounts> checkMainAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
+
+                for (int i = 0; i < checkAccounts.Count; i++)
                 {
-                    runMenu = false;
-                }
-                //select account case
-                else if (selectedItems <= menuItems.Count - 1)
-                {
-                    Console.Clear();
-                    senderAccountId = checkaccounts[selectedItems].id;
-                    senderAccountName = checkaccounts[selectedItems].name;
-                    senderBalance = checkaccounts[selectedItems].balance;
-                    senderAccountPos = selectedItems;
-                    Console.WriteLine($"\n {checkaccounts[selectedItems].name} account was selected");
-                    menuMsg2 = menuMsg2 + $"\n Sender account: {checkaccounts[selectedItems].name}";
-                    Console.ReadKey();
-                    runMenu2 = true;
-                    menuIndex = 0;
-
-                    //Submenu Start
-                    while (runMenu2)
-                    {
-                        selectedItems = Int32.Parse(MenuList(menuItems, menuMsg));
-                        reciverAccountName = "";
-                        //Exit case
-                        if (selectedItems == menuItems.Count - 1)
-                        {
-                            runMenu2 = false;
-                        }
-                        else if (selectedItems <= menuItems.Count - 1)
-                        {
-
-                            Console.Clear();
-                            reciverAccountId = checkaccounts[selectedItems].id;
-                            reciverAccountName = checkaccounts[selectedItems].name;
-                            reciverAccountPos = selectedItems;
-
-                            //Same account was selected
-                            if (senderAccountName == reciverAccountName)
-                            {
-                                Console.Clear();
-                                Console.WriteLine($"\n Can not select the same account");
-                                Console.WriteLine($" Press any key to continue");
-                                Console.ReadKey();
-                            }
-                            //Select reciver account
-                            else
-                            {
-                                reciverBalance = checkaccounts[selectedItems].balance;
-
-                                Console.WriteLine($"\n {checkaccounts[selectedItems].name} account was selected");
-                                Console.ReadKey();
-                                Console.Clear();
-                                Console.WriteLine($"\n Sender account: {senderAccountName}: {senderBalance}");
-                                Console.WriteLine($" Reciver account: {reciverAccountName}: {reciverBalance}");
-                                Console.Write($"\n Enter amount you wish to transfer: ");
-                                input = Console.ReadLine();
-
-
-                                decimal.TryParse(input, out decimal transferAmount);
-                                //Transfer amount is negative
-                                if (transferAmount <= 0)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine($"\n Amount can not be negative");
-                                    Console.WriteLine($" Press any key to continue");
-                                    Console.ReadKey();
-                                    runMenu = false;
-                                    runMenu2 = false;
-                                }
-                                //Transfer amount larger than balance
-                                else if (transferAmount > senderBalance)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine($"\n Transfer amount exceeds account balance");
-                                    Console.WriteLine($" Press any key to continue");
-                                    Console.ReadKey();
-                                    runMenu = false;
-                                    runMenu2 = false;
-                                }
-                                //Transfer Start
-                                else
-                                {
-
-                                    //check currencies
-                                   if (checkaccounts[senderAccountPos].currency_id != checkaccounts[reciverAccountPos].currency_id)
-                                    {
-                                        //transaction between different currencies
-                                        transferAmount = currency_exchange(transferAmount, senderAccountPos, reciverAccountPos, checkaccounts);
-                                        PostgresqlConnection.Transfer(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
-                                        Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
-                                        Console.WriteLine($"\n Press any key to continue");
-                                        Console.ReadKey();
-
-                                        runMenu = false;
-                                        runMenu2 = false;
-                                    }
-                                    //transaction between same currency
-                                    else
-                                    {
-                                        //execute transaction
-                                        PostgresqlConnection.Transfer(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
-
-                                        Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
-                                        Console.WriteLine($"\n Press any key to continue");
-                                        Console.ReadKey();
-                                        runMenu = false;
-                                        runMenu2 = false;
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-
+                    Console.WriteLine($"{i + 1}: {checkMainAccounts[i].name}: {checkMainAccounts[i].balance:C}");
                 }
 
+                Console.Write("Enter your choice: ===> ");
+                Console.WriteLine();
+                string accountChoiceOfAccount = Console.ReadLine();
+
+                int.TryParse(accountChoiceOfAccount, out int toAccountID);
+                toAccountID -= 1;
+
+                BankAccounts toAccount = checkAccounts[toAccountID];
+
+                Console.Write("Enter your amount: ===> ");
+                Console.WriteLine();
+                decimal amountInNumber = decimal.Parse(Console.ReadLine());
+
+                if (fromAccount.balance < amountInNumber)
+                {
+                    Console.WriteLine("You don't have enough money in the account.");
+                    Console.WriteLine("Press enter twice to return to the main menu.");
+                    Console.Write("===>");
+                    Console.ReadLine();
+
+                    return;
+                }
+                else
+                {
+
+                    fromAccount.balance -= amountInNumber;
+                    toAccount.balance += amountInNumber;
+                    Console.WriteLine($"\nThe transfer of {amountInNumber:C} from {fromAccount.name} to {toAccount.name} was completed.");
+                    Console.WriteLine("Press enter twice to return to the main menu.");
+                    Console.ReadLine();
+
+                    // Save the changes to the database
+                    PostgresqlConnection.UpdateAccount(fromAccount.balance, fromAccount.id, fromAccount.user_id);
+                    PostgresqlConnection.UpdateAccount(toAccount.balance, toAccount.id, toAccount.user_id);
+                }
             }
-            menuIndex = 0;
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+                Console.WriteLine("Press enter twice to return to the main menu.");
+                Console.Write("===>");
+                Console.ReadLine();
+            }
         }
-        */
-
-
-
 
 
 

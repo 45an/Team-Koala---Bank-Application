@@ -5,8 +5,8 @@ namespace TeamKoalaBankApp
 
     public class BankAccounts
     {
-       
-        
+
+        public int user_id { get; set; }
 
         public int id { get; set; }
 

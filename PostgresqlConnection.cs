@@ -93,7 +93,7 @@ namespace TeamKoalaBankApp
             }
         }
 
-
+        /*
         public static bool TransferMoney(int user_id, int from_account_id, int to_account_id, decimal amount)
         {
             using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
@@ -125,4 +125,34 @@ namespace TeamKoalaBankApp
 
             }
         }
-}    }
+        */
+
+
+        public static bool TransferMoney(int user_id, int from_account_id, int to_account_id, decimal amount)
+        {
+            using (IDbConnection cnn = new NpgsqlConnection(LoadConnectionString()))
+            {
+                string newAmount = amount.ToString(CultureInfo.CreateSpecificCulture("en-GB"));
+                try
+                {
+                    var output = cnn.Query($@"
+                        BEGIN TRANSACTION;
+                        UPDATE bank_account SET balance = CASE
+                            WHEN id = {from_account_id} AND balance >= '{newAmount}' THEN balance - '{newAmount}'
+                            WHEN id = {to_account_id} THEN balance + '{newAmount}'
+                        END
+                        WHERE id IN ({from_account_id}, {to_account_id});
+                        INSERT INTO bank_transaction (name, from_account_id, to_account_id, amount)
+                        VALUES ('Överföring', {from_account_id}, {to_account_id}, '{newAmount}');
+                        COMMIT;
+                    ", new DynamicParameters());
+                }
+                catch (Npgsql.PostgresException e)
+                {
+                    Console.WriteLine(e.MessageText);
+                    return false;
+                }
+                return true;
+            }
+        }
+    }    }

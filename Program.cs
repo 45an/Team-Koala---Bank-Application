@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Security.Principal;
 
 namespace TeamKoalaBankApp
 {
@@ -7,15 +8,10 @@ namespace TeamKoalaBankApp
     {
         static void Main(string[] args)
         {
-            StartProgram();
-
-        }
-        public static void StartProgram()
-        {
             LoggingSystem();
 
         }
-
+        
         public static int menuIndex = 0;
         public static void MenuSystem(List<BankUser> logInUsers)
         {
@@ -47,22 +43,20 @@ namespace TeamKoalaBankApp
                             Console.WriteLine($"{i + 1}: {checksAccounts[i].name} : Balance {checksAccounts[i].balance:C}");
 
                         }
-
-                        //Console.WriteLine(" Press any key to continue");
+                        Console.WriteLine("Press enter twice to return to the main menu.");
                         Console.ReadKey();
-
                         break;
+
                     case "Transfer":
-                        Console.WriteLine(" Transfer would start here");
-
-                        Console.WriteLine(" Press any key to continue");
-                     
+                        TransferBetweenAccounts(logInUsers[0].id);
                         Console.ReadKey();
                         break;
+
                     case "Withdraw":
                         WithdrawSystem(logInUsers[0].id);
                         Console.ReadKey();
                         break;
+
                     case "Logout":
                         menuIndex = 0;
                         runMenu = false;
@@ -206,7 +200,7 @@ namespace TeamKoalaBankApp
                 Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
             }
 
-            Console.Write("\nType a number please ===> ");
+            Console.Write("\nEnter your choice: ===> ");
             string? accountChoice = Console.ReadLine();
 
             int.TryParse(accountChoice, out int accountID);
@@ -230,6 +224,80 @@ namespace TeamKoalaBankApp
                 amount = checkAccounts[accountID].balance -= amount;
                 Console.WriteLine($"\nAccount: {checkAccounts[accountID].name} New balance is : {amount}");
                 PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
+            }
+        }
+
+        static void TransferBetweenAccounts(int user_id)
+        {
+            Console.WriteLine("\nWhich account do you want to transfer money from?");
+
+            List<BankAccounts> checkAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
+
+            Console.Clear();
+            for (int i = 0; i < checkAccounts.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
+            }
+
+            try
+            {
+                Console.Write("\nEnter your choice: ===> ");
+                string accountChoice = Console.ReadLine();
+
+                int.TryParse(accountChoice, out int fromAccountID);
+                fromAccountID -= 1;
+
+                BankAccounts fromAccount = checkAccounts[fromAccountID];
+
+                Console.WriteLine("\nWhich account do you want to transfer money to?");
+
+                List<BankAccounts> checkMainAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
+
+                for (int i = 0; i < checkAccounts.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}: {checkMainAccounts[i].name}: {checkMainAccounts[i].balance:C}");
+                }
+
+                Console.Write("Enter your choice: ===> ");
+                string accountChoiceOfAccount = Console.ReadLine();
+
+                int.TryParse(accountChoiceOfAccount, out int toAccountID);
+                toAccountID -= 1;
+
+                BankAccounts toAccount = checkAccounts[toAccountID];
+
+                Console.Write("Enter your amount: ===> ");
+                decimal amountInNumber = decimal.Parse(Console.ReadLine());
+
+                if (fromAccount.balance < amountInNumber)
+                {
+                    Console.WriteLine("You don't have enough money in the account.");
+                    Console.WriteLine("Press enter twice to return to the main menu.");
+                    Console.Write("===>");
+                    Console.ReadLine();
+
+                    return;
+                }
+                else
+                {
+                    
+                    fromAccount.balance -= amountInNumber;
+                    toAccount.balance += amountInNumber;
+                    Console.WriteLine($"\nThe transfer of {amountInNumber:C} from {fromAccount.name} to {toAccount.name} was completed.");
+                    Console.WriteLine("Press enter twice to return to the main menu.");
+                    Console.ReadLine();
+
+                    // Save the changes to the database
+                    PostgresqlConnection.UpdateAccount(fromAccount.balance, fromAccount.id, fromAccount.user_id);
+                    PostgresqlConnection.UpdateAccount(toAccount.balance, toAccount.id, toAccount.user_id);
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+                Console.WriteLine("Press enter twice to return to the main menu.");
+                Console.Write("===>");
+                Console.ReadLine();
             }
         }
 

@@ -52,8 +52,7 @@ namespace TeamKoalaBankApp
                             Console.WriteLine($"{i + 1}: {checksAccounts[i].name} : Balance {checksAccounts[i].balance:C}");
 
                         }
-
-                        
+                        Console.WriteLine("Press enter to return to the main menu.");
                         Console.ReadKey();
 
                         break;
@@ -67,6 +66,7 @@ namespace TeamKoalaBankApp
                         break;
                     case "Transfer Between Account":
                         TransferBetweenAccounts(logInUsers[0].id);
+                        Console.ReadKey();
                         break;
                     case "Logout":
                         Console.WriteLine($"\nThanks for using our services, Have a Nice day :)");
@@ -234,14 +234,13 @@ namespace TeamKoalaBankApp
             }
 
             Console.Write("\nPlease select an account ===> ");
-            Console.WriteLine();
             string? accountChoice = Console.ReadLine();
 
             int.TryParse(accountChoice, out int accountID);
             accountID -= 1;
 
             Console.WriteLine("\nHow much money to withdraw from you bank account??\n");
-            Console.Write("Type here: ");
+            Console.Write("\nEnter your amount: ===> ");
             string? transfer = Console.ReadLine();
             decimal.TryParse(transfer, out amount);
 
@@ -258,7 +257,9 @@ namespace TeamKoalaBankApp
                 amount = checkAccounts[accountID].balance -= amount;
                 Console.WriteLine($"\nAccount: {checkAccounts[accountID].name} New balance is : {amount}");
                 PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
+                Console.WriteLine("Press enter to return to the main menu.");
             }
+            
         }
 
         public static void Deposit(int user_id)
@@ -273,14 +274,15 @@ namespace TeamKoalaBankApp
             for (int i = 0; i < checkAccounts.Count; i++)
             {
                 Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
-            }
+            } 
+
             Console.Write("\nPlease select an account ===> ");
             string? accountChoice = Console.ReadLine();
             int.TryParse(accountChoice, out int accountID);
             accountID -= 1;
 
             Console.WriteLine("\nHow much money would you like to deposit to your bank account?\n");
-            Console.Write("Type here: ====> ")
+            Console.Write("\nEnter your amount: ===> ");
             string? deposit = Console.ReadLine();
             decimal.TryParse(deposit, out amount);
 
@@ -315,7 +317,6 @@ namespace TeamKoalaBankApp
             try
             {
                 Console.Write("\nEnter your choice: ===> ");
-                Console.WriteLine();
                 string accountChoice = Console.ReadLine();
 
                 int.TryParse(accountChoice, out int fromAccountID);
@@ -333,7 +334,6 @@ namespace TeamKoalaBankApp
                 }
 
                 Console.Write("Enter your choice: ===> ");
-                Console.WriteLine();
                 string accountChoiceOfAccount = Console.ReadLine();
 
                 int.TryParse(accountChoiceOfAccount, out int toAccountID);
@@ -342,14 +342,12 @@ namespace TeamKoalaBankApp
                 BankAccounts toAccount = checkAccounts[toAccountID];
 
                 Console.Write("Enter your amount: ===> ");
-                Console.WriteLine();
                 decimal amountInNumber = decimal.Parse(Console.ReadLine());
 
                 if (fromAccount.balance < amountInNumber)
                 {
-                    Console.WriteLine("You don't have enough money in the account.");
+                    Console.WriteLine($"You don't have enough money in {fromAccount.name}.");
                     Console.WriteLine("Press enter twice to return to the main menu.");
-                    Console.Write("===>");
                     Console.ReadLine();
 
                     return;

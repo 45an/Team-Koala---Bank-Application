@@ -3,6 +3,7 @@ using System.Configuration;
 using Dapper;
 using Npgsql;
 using System.Data;
+using System.Globalization;
 
 namespace TeamKoalaBankApp
 {
@@ -28,7 +29,7 @@ namespace TeamKoalaBankApp
             List<string> menuItems = new()
             {
                 "View Account & Balance",
-                "Transfer",
+                "Deposit",
                 "Withdraw",
                 "Logout"
             };
@@ -55,10 +56,9 @@ namespace TeamKoalaBankApp
                         Console.ReadKey();
 
                         break;
-                    case "Transfer":
-                        Console.WriteLine(" Transfer would start here");
-                        Console.WriteLine(" Press any key to continue");
-                        Console.ReadKey();
+                    case "Deposit":
+                        Deposit(logInUsers[0].id);
+
                         break;
                     case "Withdraw":
                         WithdrawSystem(logInUsers[0].id);
@@ -256,6 +256,45 @@ namespace TeamKoalaBankApp
             }
         }
 
+        public static void Deposit(int user_id)
+
+        {
+            decimal amount;
+            List<BankAccounts> checkAccounts = PostgresqlConnection.ShowBankAccounts(user_id);
+
+            Console.Clear();
+            Console.WriteLine("To which account would to like to deposit the money?\n");
+
+            for (int i = 0; i < checkAccounts.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}: {checkAccounts[i].name} | Balance: {checkAccounts[i].balance:C}");
+            }
+            Console.Write("\nPlease select an account ===> ");
+            string? accountChoice = Console.ReadLine();
+            int.TryParse(accountChoice, out int accountID);
+            accountID -= 1;
+
+            Console.WriteLine("\nHow much money would you like to deposit to your bank account?\n");
+            Console.Write("Type here: ");
+            string? deposit = Console.ReadLine();
+            decimal.TryParse(deposit, out amount);
+
+
+            if (amount <= 0)
+            {
+                Console.WriteLine("Amount to deposit cannot be a negative value.");
+            }
+
+            else
+            {
+                amount = checkAccounts[accountID].balance += amount;
+                Console.WriteLine($"\nAccount: {checkAccounts[accountID].name} New balance is : {amount}");
+                PostgresqlConnection.UpdateAccount(amount, checkAccounts[accountID].id, user_id);
+            }
+        }
+       
+        /*
+
         public static void Transfer(int user_Id)
         {
             menuIndex = 0;
@@ -372,7 +411,7 @@ namespace TeamKoalaBankApp
                                     {
                                         //transaction between different currencies
                                         transferAmount = currency_exchange(transferAmount, senderAccountPos, reciverAccountPos, checkaccounts);
-                                        PostgresqlConnection.TransferMoney(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
+                                        PostgresqlConnection.Transfer(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
                                         Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
                                         Console.WriteLine($"\n Press any key to continue");
                                         Console.ReadKey();
@@ -384,7 +423,7 @@ namespace TeamKoalaBankApp
                                     else
                                     {
                                         //execute transaction
-                                        PostgresqlConnection.TransferMoney(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
+                                        PostgresqlConnection.Transfer(user_Id, senderAccountId, reciverAccountId, reciverBalance, transferAmount);
 
                                         Console.WriteLine($"\n {Math.Truncate(transferAmount * 100) / 100} was transfered to {reciverAccountName}");
                                         Console.WriteLine($"\n Press any key to continue");
@@ -404,6 +443,7 @@ namespace TeamKoalaBankApp
             }
             menuIndex = 0;
         }
+        */
 
 
 

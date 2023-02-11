@@ -2,5 +2,6 @@
 **/bin/*
 **/obj/*
 .vs/
-Team-Koala---Bank-Application/.vs # Change this to the name of your git repo for Visual Studio git connection to work
+.DS_Store
+Team-Koala---Bank-Application/.vs 
 app.config

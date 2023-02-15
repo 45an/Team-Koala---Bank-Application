@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TeamKoalaBankApp.Program">
+    <Position X="4.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAgACAAAAAAAAAAQQABAAAAAAAAABAAAAAI=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TeamKoalaBankApp.BankAccounts">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAIAAAAAAAAAEAIAAAEAACAAAAAAAACAgA=</HashCode>
+      <FileName>BankAccounts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamKoalaBankApp.BankUser">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAQgA=</HashCode>
+      <FileName>BankUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamKoalaBankApp.PostgresqlConnection">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAABAAAwAAAAAAABgAgEAAAAAAAoAA=</HashCode>
+      <FileName>PostgresqlConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBTest.TransactionsModel">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAEgAAABAAAIAAAAgA=</HashCode>
+      <FileName>BankTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

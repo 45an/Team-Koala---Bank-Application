@@ -116,39 +116,73 @@ database and has methods for querying and updating data in the database using Da
 
  ## 📑 BankUser Class
  
-    The BankUser class represents a user of a banking application. It contains properties for the user's ID, first name, last name, and PIN code. Additionally, it includes a read-only fullName property that returns the user's full name by concatenating their first and last names.
+    The BankUser class represents a user of a banking application.
+    
+    It contains properties for the user's ID, first name, last name, and PIN code.
+    
+    Additionally, it includes a read-only fullName property that returns
+    
+    the user's full name by concatenating their first and last names.
        
       Properties
       
-     - id: An integer representing the user's ID.
+     - id: 
+     - Type: int
+      Description: An integer representing the user's ID.
+      
+     - first_name 
+     - Type: string
+      Description: A string representing the user's first name.
+     - last_name 
+     - Type: string
+      Description: A string representing the user's last name.
+      
+     - pin_code
+     - Type: string
+      Description:  A string representing the user's PIN code.
      
-     - first_name: A string representing the user's first name.
+  ## 📑 BankAccounts class:
+
+     The BankAccounts class is responsible for representing bank accounts for bank customers. 
+     It contains properties that store information about a bank account such as user_id, id, 
+     name, balance, interest_rate, currency_name, currency_exchange_rate, and currency_id. 
      
-     - last_name: A string representing the user's last name.
+     Properties
+      
+      
+      - user_id 
+      - Type: int
+       Description: An integer representing the ID of the user associated with the bank account.
+      
+     - id 
+     - Type: int
+      Description: An integer representing the ID of the bank account.
      
-     - pin_code: A string representing the user's PIN code.
+     - name 
+     - Type: string
+      Description: A string representing the name of the bank account.
      
+     - balance
+     - Type: decimal
+      Description:A decimal representing the current balance of the bank account.
+      
+     - interest_rate 
+     - Type: double
+      Description: A double representing the interest rate associated with the bank account.
+        
+     - currency_name 
+     - Type: string
+      Description: A string representing the name of the currency associated with the bank account.
+       
+     - currency_exchange_rate  
+     - Type: double
+      Description:  A double representing the exchange rate associated with the currency of the bank account.
      
-  ## 📑 The BankAccounts class represents a bank account with the following properties:
-  
-     user_id - An integer representing the ID of the user associated with the bank account.
+     - currency_id 
+     - Type: int 
+      Description: An integer representing the ID of the currency associated with the bank account.
      
-     id - An integer representing the ID of the bank account.
-     
-     name - A string representing the name of the bank account.
-     
-     balance - A decimal representing the current balance of the bank account.
-     
-     interest_rate - A double representing the interest rate associated with the bank account.
-     
-     currency_name - A string representing the name of the currency associated with the bank account.
-     
-     currency_exchange_rate - A double representing the exchange rate associated with the currency of the bank account.
-     
-     currency_id - An integer representing the ID of the currency associated with the bank account.
-     
-     This class can be used to represent the user's bank account in a banking application.
-    
+
  
   ## 📑 TransactionsModel
    ```sh
@@ -226,7 +260,7 @@ database and has methods for querying and updating data in the database using Da
  ```
 ## 📈 UML Diagram
 
- This UML diagram depicts the classes used in the TeamKoalaBankApp application, including their names, positions, and file names. 
+ This UML diagram depicts the classes used in the TeamKoalaBankApp application, including Classes, and PostgreSql. 
  The top-level class is Program, which is the entry point for the application. 
  The BankAccounts class manages the bank accounts for users, while the BankUser class represents a user of the bank.
  The PostgresqlConnection class is used to connect to a PostgreSQL database.
@@ -240,10 +274,11 @@ database and has methods for querying and updating data in the database using Da
  
  ## 👨‍💻 Developer Team
  
+ - [Muse Yusuf](https://github.com/45an)
  - [Caius Matei](https://github.com/CaiusMatei)
  - [Mohib Javed](https://github.com/Chasacademy-Mohib-Javed)
  - [Bosko Derikonja](https://github.com/boskojr)
- - [Muse Yusuf](https://github.com/45an)
+ 
  
  
  

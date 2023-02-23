@@ -80,4 +80,40 @@ The program also includes a PostgresqlConnection class that handles the connecti
 database and has methods for querying and updating data in the database using Dapper.
 
 ```
+
+ ## 📑 BankUser Class
+ 
+    The BankUser class represents a user of a banking application. It contains properties for the user's ID, first name, last name, and PIN code. Additionally, it includes a read-only fullName property that returns the user's full name by concatenating their first and last names.
+       
+      Properties
+      
+     - id: An integer representing the user's ID.
+     
+     - first_name: A string representing the user's first name.
+     
+     - last_name: A string representing the user's last name.
+     
+     - pin_code: A string representing the user's PIN code.
+     
+     
+  ## 📑 The BankAccounts class represents a bank account with the following properties:
+
+     user_id - An integer representing the ID of the user associated with the bank account.
+     
+     id - An integer representing the ID of the bank account.
+     
+     name - A string representing the name of the bank account.
+     
+     balance - A decimal representing the current balance of the bank account.
+     
+     interest_rate - A double representing the interest rate associated with the bank account.
+     
+     currency_name - A string representing the name of the currency associated with the bank account.
+     
+     currency_exchange_rate - A double representing the exchange rate associated with the currency of the bank account.
+     
+     currency_id - An integer representing the ID of the currency associated with the bank account.
+     
+     This class can be used to represent a user's bank account in a banking application.
+
    

@@ -1,5 +1,38 @@
 # Team-Koala---Bank-Application
 
+⠀⠀⠀⠀⠀⣀⣠⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣴⠟⠉⠀⠀⠀⠈⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠛⠁⠀⠀⠈⠙⠳⣄⠀⠀⠀⠀⠀⠀
+⠀⢠⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⠤⣤⣤⠤⠶⠖⠛⠋⠉⠀⠀⠀⠀⠀⠈⠉⠛⠛⠲⠦⢤⣤⣤⡴⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀
+⢠⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⠀⠀⠀⠀
+⣼⡇⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⢿⡇⠀⠀⠀
+⣿⡇⢠⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⡀⢸⡇⡆⠀⠀
+⠹⣧⡏⣰⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠐⢶⡾⣷⡿⠃⠁⠀⠀
+⠀⠹⣿⡟⠀⠀⠀⠀⠀⢸⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⢁⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⠀⠀⢸⣧⡿⠀⠀⠀⠀⠀
+⠀⠀⢹⡇⠀⠀⠀⠀⢠⡟⠀⠀⠀⠀⠀⣰⣤⡄⠀⠀⠀⣿⡿⣿⣿⣿⣿⣿⡄⠀⠀⠀⣴⣦⡀⠀⠀⠀⠀⠀⠀⠈⣷⠀⠀⠀⠀⢨⡿⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⢻⣄⠀⠀⢀⣿⠃⠀⠀⠀⠀⠘⣿⣿⠇⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⢿⣿⠏⠀⠀⠀⠀⠀⠀⠀⢹⣇⠀⠀⢀⡼⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⠛⠶⢾⠇⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡶⠶⠋⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠘⠿⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣆⣀⣠⣶⣄⣀⣰⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠘⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣶⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠶⠶⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠁⠀⠀⠀⢀⣤⠶⢤⣄⡀⣼⠁⢀⣴⠏⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⢿⣻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⠀⠀⠀⠀⠸⣷⣀⣀⣈⣿⣿⠶⠋⠁⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠘⣷⠻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠈⣭⠉⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⣼⡏⠀⠀⠀⠀⠀⠀⣿⡀⢹⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⣼⡟⠀⠀⠀⠀⠹⣦⠀⠀⠀⠀⣠⣾⠋⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⢻⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⢹⣆⣠⡴⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡇⠀⠈⣿⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣠⣀⡀⢸⡏⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⢀⠀⣴⡿⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡟⠀⠀⠀⢸⣧⠈⣿⡆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣴⠟⠁⠀⠉⢻⡇⠀⠀⠀⠀⠀⠀⣿⠀⣠⡷⠶⢦⣿⡧⠖⠒⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⠟⠋⠀⠀⠀⠀⠀⢿⡇⠘⠛⣿⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⢸⡏⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⣿⣼⠋⠀⠀⠀⠙⢿⣶⡚⠃⠀⣀⣤⣤⡴⠞⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⠀⢠⡿⠃⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⡇⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⣿⡿⠀⠀⠀⠀⠀⠀⢿⡉⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡇⢸⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠈⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣷⠟⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⢰⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠹⣧⠀⠀⠀⠀⣿⡀⠀⠀⠀⠀⣸⠏⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⢷⣄⣀⠀⢹⣯⣿⠀⣶⣤⣿⣤⣼⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣴⡶⠞⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠙⠛⠒⠛⠋⠁⠀⠀⠈⠛⠓⠶⠤⠤⠤⠤⠤⠶⠖⠒⠛⠛⠛⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀
+
 ## Introduction
 This is a console-based banking application built using C# programming language and PostgreSQL as the database management system. The application allows bank customers to manage their accounts and perform basic banking operations such as view account and balance, withdraw, deposit, transfer between accounts, and logout. With PostgreSQL, the application can securely store and retrieve customer account information and transaction records. The application also features robust data handling and data integrity features, ensuring that customer data is accurate and consistent.
 
@@ -97,7 +130,7 @@ database and has methods for querying and updating data in the database using Da
      
      
   ## 📑 The BankAccounts class represents a bank account with the following properties:
-
+  
      user_id - An integer representing the ID of the user associated with the bank account.
      
      id - An integer representing the ID of the bank account.
@@ -115,12 +148,15 @@ database and has methods for querying and updating data in the database using Da
      currency_id - An integer representing the ID of the currency associated with the bank account.
      
      This class can be used to represent the user's bank account in a banking application.
-     
-  ## TransactionsModel
+    
+ 
+  ## 📑 TransactionsModel
    ```sh
    
  TransactionsModel is a class that defines a transaction with properties such as id, name, from_account_id, to_account_id, and amount.
- It also contains a method called GetSignedAmount(), which takes an account_id as a parameter and returns a string representation of the transaction amount with a negative sign if the account belongs to from_account_id.
+ It also contains a method called GetSignedAmount(),
+ which takes an account_id as a parameter and returns a string representation of the transaction amount with a negative sign
+ if the account belongs to from_account_id.
       
  Properties
   
@@ -146,28 +182,71 @@ database and has methods for querying and updating data in the database using Da
   
 ```
 
-## 🐘 PostgresqlConnection
+# 🐘 PostgresqlConnection
 
-### Database Structure
+### 📑  Database Structure
     The following tables are used in this application:
 
     - bank_user: Contains information about bank users.
+    
     - bank_account: Contains information about bank accounts, including the user ID, balance, and currency.
+    
     - bank_currency: Contains information about currencies, including the name and exchange rate.
+    
     - bank_transaction: Contains information about bank transactions, including the name, source account ID, destination account ID, and amount.
     
-### Database Interactions
+### 📑 Database Interactions
+
+ ```sh
+ 
     The PostgresqlConnection class contains several methods for interacting with the database, including:
 
     - OldLoadBankUsers(): Returns a list of all bank users.
+    
     - GetTransactionByAccountId(int account_id): Returns a list of transactions for a given account ID.
+    
     - LoadBankUsers(int user_id): Returns a list of bank users with a given user ID.
-    - CheckLogin(string first_name, string last_name, string pin_code): Returns a list of bank users that match a given first name, last name, and PIN code.
+    
+    - CheckLogin(string first_name, string last_name, string pin_code): 
+    
+      Returns a list of bank users that match a given first name, last name, and PIN code.
+      
     - GetUserAccounts(int user_id): Returns a list of bank accounts for a given user ID.
+    
     - SaveBankUser(BankUser user): Inserts a new bank user into the database.
+    
     - UpdateAccount(decimal amount, int id, int user_id): Updates the balance of a bank account with a given ID and user ID.
+    
     - ShowBankAccounts(int user_id): Returns a list of bank accounts for a given user ID.
+    
     - TransferMoney(int user_id, int from_account_id, int to_account_id, decimal amount): Transfers money between two bank accounts.
+    
     - MakeDeposit(int account_id, decimal amount): Makes a deposit to a bank account.
 
-   
+ ```
+## 📈 UML Diagram
+
+ This UML diagram depicts the classes used in the TeamKoalaBankApp application, including their names, positions, and file names. 
+ The top-level class is Program, which is the entry point for the application. 
+ The BankAccounts class manages the bank accounts for users, while the BankUser class represents a user of the bank.
+ The PostgresqlConnection class is used to connect to a PostgreSQL database.
+ Finally, the TransactionsModel class manages bank transactions. 
+ This diagram provides a basic overview of the application's class structure, 
+ which can be useful for understanding the codebase and how different components relate to each other.
+ 
+ 
+ 
+ ![bild](https://user-images.githubusercontent.com/114033186/221009922-067adf75-50eb-45ef-9aec-d1fb767c8ec8.png)
+ 
+ ## 👨‍💻 Developer Team
+ 
+ - [Caius Matei](https://github.com/CaiusMatei)
+ - [Mohib Javed](https://github.com/Chasacademy-Mohib-Javed)
+ - [Bosko Derikonja](https://github.com/boskojr)
+ - [Muse Yusuf](https://github.com/45an)
+ 
+ 
+ 
+ 
+
+ 

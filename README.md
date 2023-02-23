@@ -70,7 +70,9 @@ To install and run the application, follow the steps below:
 ## Usage
 
 When the application is launched, the user is prompted to enter their login credentials. If the credentials are valid, the user is taken to the main menu where they can perform various banking operations.
-Menu Options
+
+
+# Menu Options
 
 ## The following menu options are available to the user:
 

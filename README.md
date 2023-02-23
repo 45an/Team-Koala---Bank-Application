@@ -59,7 +59,7 @@ To install and run the application, follow the steps below:
     4. Build and run the application in Visual Studio.
     
     
-  # 🛠️ Tools
+  ## 🛠️ Tools
     
     - C# programming language
     - .NET Framework
@@ -282,7 +282,9 @@ database and has methods for querying and updating data in the database using Da
  - [Bosko Derikonja](https://github.com/boskojr)
  
  
- 
+ ## 📌Misc
+
+Links comming soon 🚀
  
  
 

@@ -30,14 +30,17 @@ To install and run the application, follow the steps below:
     
     - C# programming language
     - .NET Framework
-    -  SQL
+    -  PostgreSQL
     -  Dapper (a Micro ORM for .NET)
     -  Visual Studio (IDE for C# development)
     
 ## Usage
 
-When the application is launched, the user is prompted to enter their login credentials. If the credentials are valid, the user is taken to the main menu where they can perform various banking operations.
-Menu Options
+When the application is launched, the user is prompted to enter their login credentials. If the credentials are valid,
+the user is taken to the main menu where they can perform various banking operations.
+
+
+# Menu Options
 
 ## The following menu options are available to the user:
 
@@ -58,12 +61,27 @@ Menu Options
 ## 💻 Code Structure
 
   The code is structured in the following way:
+  
+ 
 
  ```sh
-
+ 
+   - Program.cs: Main entry point of the application.
+   
+   - PostgresqlConnection.cs: Class that handles all database interactions using Dapper.
+   
+   - BankAccounts.cs: Model class that represents a bank account.
+   
+   - BankUser.cs: Model class that represents a bank user.
+   
+   - TransactionsModel.cs: Model class that represents a bank transaction.
+   
+   - App.config (which is not included in the repository for safety reasons)
+   
 The code includes multiple methods that handle various functionalities of the program.
 
-The StartProgram() method is the first method that gets executed when the program starts, and it calls the LoggingSystem() method.
+The StartProgram() method is the first method that gets executed when the program starts,
+ and it calls the LoggingSystem() method.
 
 The MenuSystem(List<BankUser> logInUsers) method implements the main menu system of the application. 
 The method initializes a list of menu items and uses a while loop to display the menu and receive user input. 
@@ -73,7 +91,8 @@ The WithdrawSystem(int id) method handles the user's withdrawal from their bank 
 method handles the user's deposit into their account. 
 The TransferBetweenAccounts(int id) method allows the user to transfer funds between two of their accounts.
 
-The MenuList(List<string?> menuItem, string? menuMsg) method is responsible for displaying a list of menu items and receiving user input.
+The MenuList(List<string?> menuItem, string? menuMsg) method is responsible for displaying 
+a list of menu items and receiving user input.
 It uses a ConsoleKeyInfo object to capture the user's input, such as the arrow keys or the enter key.
 
 The program also includes a PostgresqlConnection class that handles the connection to the PostgreSQL 
@@ -83,7 +102,13 @@ database and has methods for querying and updating data in the database using Da
 
  ## 📑 BankUser Class
  
-    The BankUser class represents a user of a banking application. It contains properties for the user's ID, first name, last name, and PIN code. Additionally, it includes a read-only fullName property that returns the user's full name by concatenating their first and last names.
+    The BankUser class represents a user of a banking application.
+    
+    It contains properties for the user's ID, first name, last name, and PIN code.
+    
+    Additionally, it includes a read-only fullName property that returns the user's 
+    
+    full name by concatenating their first and last names.
        
       Properties
       
@@ -98,22 +123,22 @@ database and has methods for querying and updating data in the database using Da
      
   ## 📑 The BankAccounts class represents a bank account with the following properties:
 
-     user_id - An integer representing the ID of the user associated with the bank account.
+     - user_id - An integer representing the ID of the user associated with the bank account.
      
-     id - An integer representing the ID of the bank account.
+     - id - An integer representing the ID of the bank account.
      
-     name - A string representing the name of the bank account.
+     - name - A string representing the name of the bank account.
      
-     balance - A decimal representing the current balance of the bank account.
+     - balance - A decimal representing the current balance of the bank account.
      
-     interest_rate - A double representing the interest rate associated with the bank account.
+     - interest_rate - A double representing the interest rate associated with the bank account.
      
-     currency_name - A string representing the name of the currency associated with the bank account.
+     - currency_name - A string representing the name of the currency associated with the bank account.
      
-     currency_exchange_rate - A double representing the exchange rate associated with the currency of the bank account.
+     - currency_exchange_rate - A double representing the exchange rate associated with the currency of the bank account.
      
-     currency_id - An integer representing the ID of the currency associated with the bank account.
+     - currency_id - An integer representing the ID of the currency associated with the bank account.
      
-     This class can be used to represent a user's bank account in a banking application.
+      - This Class is used to represent a user's bank account in our bank application.
 
    

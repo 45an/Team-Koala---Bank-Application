@@ -55,7 +55,7 @@ Menu Options
 
     
     
-## Code Structure
+## 💻 Code Structure
 
   The code is structured in the following way:
 

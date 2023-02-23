@@ -34,7 +34,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀
 
 ## Introduction
-This is a console-based banking application built using C# programming language and PostgreSQL as the database management system. The application allows bank customers to manage their accounts and perform basic banking operations such as view account and balance, withdraw, deposit, transfer between accounts, and logout. With PostgreSQL, the application can securely store and retrieve customer account information and transaction records. The application also features robust data handling and data integrity features, ensuring that customer data is accurate and consistent.
+This is a console-based banking application built using C# programming language, PostgreSQL as the database management system and and Dapper (a Micro ORM for .NET). The application allows bank customers to manage their accounts and perform basic banking operations such as view account and balance, withdraw, deposit, transfer between accounts, and logout.
 
 ## Requirements
 

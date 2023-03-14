@@ -66,6 +66,7 @@ To install and run the application, follow the steps below:
     -  SQL
     -  Dapper (a Micro ORM for .NET)
     -  Visual Studio (IDE for C# development)
+    - Jira 
     
 ## Usage
 
@@ -284,8 +285,16 @@ database and has methods for querying and updating data in the database using Da
  
  ## 📌Misc
 
-Links comming soon 🚀
- 
- 
+### Scrumboard 📊
+ <img width="1436" alt="Skärmavbild 2023-03-14 kl  09 14 43" src="https://user-images.githubusercontent.com/114033186/224939468-f48669e9-066b-46cf-a0ad-b413c0819255.png">
+
+<img width="1439" alt="Skärmavbild 2023-03-14 kl  09 15 09" src="https://user-images.githubusercontent.com/114033186/224939495-bcf8cd66-148f-4530-9693-6efa2dff35fe.png">
+
+<img width="1439" alt="Skärmavbild 2023-03-14 kl  09 15 27" src="https://user-images.githubusercontent.com/114033186/224939524-fb730c72-a026-4307-b280-9ffddea77b66.png">
+
+<img width="1440" alt="Skärmavbild 2023-03-14 kl  09 16 14" src="https://user-images.githubusercontent.com/114033186/224939605-9ef6b5db-ba6e-4c0a-8d3e-3baa37f2d69a.png">
+
+<img width="1440" alt="Skärmavbild 2023-03-14 kl  09 17 59" src="https://user-images.githubusercontent.com/114033186/224939633-9f717ad9-01b2-417a-aff5-7e46e09fc005.png">
+
 
  

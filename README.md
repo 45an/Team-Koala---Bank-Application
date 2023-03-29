@@ -275,14 +275,7 @@ database and has methods for querying and updating data in the database using Da
  
  ![bild](https://user-images.githubusercontent.com/114033186/221009922-067adf75-50eb-45ef-9aec-d1fb767c8ec8.png)
  
- ## 👨‍💻 Developer Team
- 
- - [Muse Yusuf](https://github.com/45an)
- - [Caius Matei](https://github.com/CaiusMatei)
- - [Mohib Javed](https://github.com/Chasacademy-Mohib-Javed)
- - [Bosko Derikonja](https://github.com/boskojr)
- 
- 
+
  ## 📌Misc
 
 ### Scrumboard 📊
@@ -297,4 +290,13 @@ database and has methods for querying and updating data in the database using Da
 <img width="1440" alt="Skärmavbild 2023-03-14 kl  09 17 59" src="https://user-images.githubusercontent.com/114033186/224939633-9f717ad9-01b2-417a-aff5-7e46e09fc005.png">
 
 
+
+ ## 👨‍💻 Developer Team
+ 
+ - [Muse Yusuf](https://github.com/45an)
+ - [Caius Matei](https://github.com/CaiusMatei)
+ - [Mohib Javed](https://github.com/Chasacademy-Mohib-Javed)
+ - [Bosko Derikonja](https://github.com/boskojr)
+ 
+ 
  
